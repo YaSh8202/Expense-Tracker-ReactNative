@@ -1,0 +1,50 @@
+import { View, Text } from "react-native";
+import React from "react";
+import { AntDesign, Entypo } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+
+const AcccountCard = () => {
+  return (
+    <LinearGradient
+      start={{ x: 0, y: 1 }}
+      end={{ x: 1, y: 0 }}
+      colors={["#4e7ee7", "#b767c4", "#fa805f"]}
+        className="flex flex-col py-6 px-7 text-white  space-y-5 rounded-3xl w-[90%] h-[210px] justify-between shadow-md "
+    >
+      <View className="flex flex-row items-start text-white justify-between  ">
+        <View className="flex flex-col items-start space-y-2 ">
+          <View className="flex-row items-center space-x-1 ">
+            <Text className="text-gray-100 font-medium flex-row ">
+              Total Balance
+            </Text>
+            <Entypo name="chevron-small-down" size={20} color="white" />
+          </View>
+          <Text className="text-white text-2xl font-bold">$3,257.00</Text>
+        </View>
+        <Entypo name="dots-three-horizontal" size={20} color="white" />
+      </View>
+      <View className="flex-row items-center justify-between ">
+        <View className="items-start space-y-1">
+          <View className="flex-row space-x-1 items-center ">
+            <View className="p-1.5 bg-gray-50/20 rounded-full ">
+              <AntDesign size={15} name="arrowdown" color="white" />
+            </View>
+            <Text className="text-white text-lg ">Income</Text>
+          </View>
+          <Text className="text-gray-50 text-lg">$1,257.00</Text>
+        </View>
+        <View className="items-end space-y-1">
+          <View className="flex-row space-x-1 items-center ">
+            <View className="p-1.5 bg-gray-50/20 rounded-full ">
+              <AntDesign size={15} name="arrowup" color="white" />
+            </View>
+            <Text className="text-white text-lg ">Expenses</Text>
+          </View>
+          <Text className="text-gray-50 text-lg ">$950.00</Text>
+        </View>
+      </View>
+    </LinearGradient>
+  );
+};
+
+export default AcccountCard;
