@@ -4,7 +4,7 @@ import { RootTabScreenProps } from "../types";
 import AcccountCard from "../components/AcccountCard";
 import Transactions, { transactions } from "../components/Transactions";
 
-export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
+export default function AddScreen({ navigation }: RootTabScreenProps<"Add">) {
   return (
     <SafeAreaView>
       <ScrollView
