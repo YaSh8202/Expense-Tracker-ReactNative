@@ -88,13 +88,7 @@ type Transaction = {
 
 const Transactions = ({ transactions }: { transactions: Transaction[] }) => {
   return (
-    <View className="flex-col mt-6 w-[90%] ">
-      <View className="flex-row items-center justify-between my-2 ">
-        <Text className="text-gray-800 text-xl font-semibold ">
-          Transactions
-        </Text>
-        <Text className="text-gray-400 ">See All</Text>
-      </View>
+    <>
       {transactions.map((item, i) => (
         <View key={item.id} className="flex-row items-center my-3  ">
           {/* Image */}
@@ -125,7 +119,7 @@ const Transactions = ({ transactions }: { transactions: Transaction[] }) => {
           </Text>
         </View>
       ))}
-    </View>
+    </>
   );
 };
 

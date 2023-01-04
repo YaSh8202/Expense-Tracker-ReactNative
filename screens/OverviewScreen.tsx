@@ -22,6 +22,7 @@ export default function OverviewScreen() {
           // flex: 1,
           backgroundColor: "white",
           paddingTop: 20,
+          minHeight: "100%",
         }}
       >
         <TotalIAE />
@@ -166,7 +167,9 @@ const TypeTransactions = () => {
           </Text>
         </Pressable>
       </View>
-      <Transactions transactions={filteredTransactions} />
+      <View className="w-[90%]" >
+        <Transactions transactions={filteredTransactions} />
+      </View>
     </View>
   );
 };

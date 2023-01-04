@@ -22,6 +22,12 @@ export type RootStackParamList = {
   NotFound: undefined;
 };
 
+export type AddStackParamList = {
+  Add: undefined;
+  AddExpense: undefined;
+  AddIncome: undefined;
+}
+
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
 
@@ -37,4 +43,9 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
   CompositeScreenProps<
     BottomTabScreenProps<RootTabParamList, Screen>,
     NativeStackScreenProps<RootStackParamList>
+  >;
+export type AddTabScreenProps<Screen extends keyof AddStackParamList> =
+  CompositeScreenProps<
+    BottomTabScreenProps<AddStackParamList, Screen>,
+    NativeStackScreenProps<AddStackParamList>
   >;

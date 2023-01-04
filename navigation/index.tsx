@@ -3,7 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
+import { AntDesign, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -13,6 +13,7 @@ import { Pressable } from "react-native";
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import {
+  AddStackParamList,
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps,
@@ -20,6 +21,8 @@ import {
 import LinkingConfiguration from "./LinkingConfiguration";
 import HomeScreen from "../screens/HomeScreen";
 import OverviewScreen from "../screens/OverviewScreen";
+import AddScreen from "../screens/AddScreen";
+import AddExpense from "../screens/AddExpense";
 
 export default function Navigation() {
   return (
@@ -54,20 +57,59 @@ function RootNavigator() {
     </Stack.Navigator>
   );
 }
+const AddStack = createNativeStackNavigator<AddStackParamList>();
+
+function AddTransNavigator() {
+  return (
+    <AddStack.Navigator initialRouteName="Add">
+      <AddStack.Screen
+        name="Add"
+        component={AddScreen}
+        options={{
+          title: "Add Transaction",
+          headerTitleAlign: "center",
+          headerShadowVisible: false,
+        }}
+      />
+      <AddStack.Screen
+        name="AddExpense"
+        component={AddExpense}
+        options={{
+          title: "Add Expense",
+          headerTitleAlign: "center",
+          headerShadowVisible: false,
+        }}
+      />
+      <AddStack.Screen
+        name="AddIncome"
+        component={NotFoundScreen}
+        options={{
+          title: "Add Income",
+          headerTitleAlign: "center",
+          headerShadowVisible: false,
+        }}
+      />
+      {/* <AddStack.Group screenOptions={{ presentation: "modal" }}>
+        <Stack.Screen name="Modal" component={ModalScreen} />
+      </AddStack.Group> */}
+    </AddStack.Navigator>
+  );
+}
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
+
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      // screenOptions={{
-      //   tabBarActiveTintColor: Colors[colorScheme].tint,
-      // }}
+      screenOptions={{
+        tabBarActiveTintColor: "#8033f7",
+      }}
     >
       <BottomTab.Screen
         name="Home"
@@ -78,7 +120,7 @@ function BottomTabNavigator() {
             <MaterialIcons
               name="home-filled"
               color={color}
-              size={30}
+              size={22}
               style={{ marginBottom: -3 }}
             />
           ),
@@ -112,7 +154,25 @@ function BottomTabNavigator() {
             <MaterialIcons
               name="insert-chart"
               color={color}
-              size={30}
+              size={22}
+              style={{ marginBottom: -3 }}
+            />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Add"
+        component={AddTransNavigator}
+        options={{
+          tabBarLabel: () => null,
+          headerTitleAlign: "center",
+          headerShown: false,
+          headerShadowVisible: false,
+          tabBarIcon: ({ color }) => (
+            <AntDesign
+              name="pluscircle"
+              color={color}
+              size={25}
               style={{ marginBottom: -3 }}
             />
           ),
