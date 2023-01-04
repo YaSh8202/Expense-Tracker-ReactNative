@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import React from "react";
 import AddTransactionForm from "../components/AddTransactionForm";
 
-const AddExpense = () => {
+const AddIncome = () => {
   return (
     <View
       style={{
@@ -14,9 +14,9 @@ const AddExpense = () => {
         width: "100%",
       }}
     >
-      <AddTransactionForm type="Expense" />
+      <AddTransactionForm type="Income" />
     </View>
   );
 };
 
-export default AddExpense;
+export default AddIncome;

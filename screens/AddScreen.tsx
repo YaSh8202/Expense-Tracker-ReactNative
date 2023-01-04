@@ -19,7 +19,7 @@ export default function AddScreen({ navigation }: AddTabScreenProps<"Add">) {
         <View className="items-center space-x-3 w-[90%] flex-row  ">
           <Pressable
             onPress={() => {
-              navigation.navigate("AddExpense");
+              navigation.navigate("AddIncome");
             }}
             className=" bg-income/10 px-5 py-4 rounded-2xl space-y-1 flex-1 items-center "
           >

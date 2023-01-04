@@ -23,6 +23,7 @@ import HomeScreen from "../screens/HomeScreen";
 import OverviewScreen from "../screens/OverviewScreen";
 import AddScreen from "../screens/AddScreen";
 import AddExpense from "../screens/AddExpense";
+import AddIncome from "../screens/AddIncome";
 
 export default function Navigation() {
   return (
@@ -82,7 +83,7 @@ function AddTransNavigator() {
       />
       <AddStack.Screen
         name="AddIncome"
-        component={NotFoundScreen}
+        component={AddIncome}
         options={{
           title: "Add Income",
           headerTitleAlign: "center",
@@ -161,7 +162,7 @@ function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Add"
+        name="AddStack"
         component={AddTransNavigator}
         options={{
           tabBarLabel: () => null,
