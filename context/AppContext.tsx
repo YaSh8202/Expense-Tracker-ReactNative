@@ -68,7 +68,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     useState<Category[]>(expenseCat);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(cards);
   useEffect(() => {
     setIsLoading(true);
     // AsyncStorage.clear();

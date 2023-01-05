@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "day-to-day-expenses",
-    "slug": "day-to-day-expenses",
+    "slug": "expense-tracker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -29,6 +29,12 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "118892a8-d774-49d4-8d2e-177d29217707"
+      }
+    },
+    "owner": "yash01"
   }
 }

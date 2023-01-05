@@ -13,7 +13,6 @@ const TransactionComponent = ({
     transaction.type === "expense"
       ? expenseCategories.find((item) => item.id === transaction.categoryId)
       : incomeCategories.find((item) => item.id === transaction.categoryId);
-  console.log(imageSource);
 
   return (
     <View key={transaction.id} className="flex-row items-center my-3  ">
