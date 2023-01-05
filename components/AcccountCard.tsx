@@ -3,23 +3,33 @@ import React from "react";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
-const AcccountCard = () => {
+const AcccountCard = ({
+  name,
+  expense,
+  income,
+}: {
+  expense: number;
+  income: number;
+  name?: string;
+}) => {
   return (
     <LinearGradient
       start={{ x: 0, y: 1 }}
       end={{ x: 1, y: 0 }}
       colors={["#4e7ee7", "#b767c4", "#fa805f"]}
-        className="flex flex-col py-6 px-7 text-white  space-y-5 rounded-3xl w-[90%] h-[210px] justify-between shadow-md "
+      className="flex flex-col py-6 px-7 text-white  space-y-5 rounded-3xl w-[90%] h-[210px] justify-between shadow-md "
     >
       <View className="flex flex-row items-start text-white justify-between  ">
         <View className="flex flex-col items-start space-y-2 ">
           <View className="flex-row items-center space-x-1 ">
             <Text className="text-gray-100 font-medium flex-row ">
-              Total Balance
+              {name ? name + " " : ""}Total Balance
             </Text>
             <Entypo name="chevron-small-down" size={20} color="white" />
           </View>
-          <Text className="text-white text-2xl font-bold">$3,257.00</Text>
+          <Text className="text-white text-2xl font-bold">
+            ₹{income - expense}
+          </Text>
         </View>
         <Entypo name="dots-three-horizontal" size={20} color="white" />
       </View>
@@ -31,7 +41,7 @@ const AcccountCard = () => {
             </View>
             <Text className="text-white text-lg ">Income</Text>
           </View>
-          <Text className="text-gray-50 text-lg">$1,257.00</Text>
+          <Text className="text-gray-50 text-lg">₹{income}</Text>
         </View>
         <View className="items-end space-y-1">
           <View className="flex-row space-x-1 items-center ">
@@ -40,7 +50,7 @@ const AcccountCard = () => {
             </View>
             <Text className="text-white text-lg ">Expenses</Text>
           </View>
-          <Text className="text-gray-50 text-lg ">$950.00</Text>
+          <Text className="text-gray-50 text-lg ">₹{expense}</Text>
         </View>
       </View>
     </LinearGradient>

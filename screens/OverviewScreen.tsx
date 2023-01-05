@@ -9,8 +9,9 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { BarChart } from "react-native-chart-kit";
-import { useMemo, useState } from "react";
-import Transactions, { transactions } from "../components/Transactions";
+import { useMemo, useState, useContext } from "react";
+import Transactions from "../components/Transactions";
+import AppContext from "../context/AppContext";
 
 export default function OverviewScreen() {
   return (
@@ -34,6 +35,20 @@ export default function OverviewScreen() {
 }
 
 const TotalIAE = () => {
+  const { transactions } = useContext(AppContext);
+
+  const totalIncome = useMemo(() => {
+    return transactions
+      .filter((transaction) => transaction.type === "income")
+      .reduce((acc, curr) => acc + curr.amount, 0);
+  }, [transactions]);
+
+  const totalExpense = useMemo(() => {
+    return transactions
+      .filter((transaction) => transaction.type === "expense")
+      .reduce((acc, curr) => acc + curr.amount, 0);
+  }, [transactions]);
+
   return (
     <View className="items-center space-x-3 w-[90%] flex-row">
       <View className=" bg-income/10 px-5 py-4 rounded-2xl space-y-1 flex-1 items-center ">
@@ -42,7 +57,9 @@ const TotalIAE = () => {
           <View className="p-1 bg-income rounded-full ">
             <AntDesign size={12} name="arrowdown" color="white" />
           </View>
-          <Text className="text-gray-800 text-base font-medium">₹8,500</Text>
+          <Text className="text-gray-800 text-base font-medium">
+            ₹{totalIncome}
+          </Text>
         </View>
       </View>
       <View className=" bg-expense/10 px-6 py-4 rounded-2xl space-y-1 flex-1  ">
@@ -53,7 +70,9 @@ const TotalIAE = () => {
           <View className="p-1 bg-expense rounded-full ">
             <AntDesign size={12} name="arrowup" color="white" />
           </View>
-          <Text className="text-gray-800 text-base font-medium">₹8,500</Text>
+          <Text className="text-gray-800 text-base font-medium">
+            ₹{totalExpense}
+          </Text>
         </View>
       </View>
     </View>
@@ -121,6 +140,7 @@ const StatsChart = () => {
 
 const TypeTransactions = () => {
   const [showExpenses, setShowExpenses] = useState<boolean>(true);
+  const { transactions } = useContext(AppContext);
   const filteredTransactions = useMemo(() => {
     return transactions.filter((transaction) => {
       if (showExpenses) {
@@ -167,7 +187,7 @@ const TypeTransactions = () => {
           </Text>
         </Pressable>
       </View>
-      <View className="w-[90%]" >
+      <View className="w-[90%]">
         <Transactions transactions={filteredTransactions} />
       </View>
     </View>

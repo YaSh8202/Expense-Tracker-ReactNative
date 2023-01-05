@@ -3,7 +3,12 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { AntDesign, FontAwesome, MaterialIcons } from "@expo/vector-icons";
+import {
+  AntDesign,
+  FontAwesome,
+  Ionicons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -24,6 +29,7 @@ import OverviewScreen from "../screens/OverviewScreen";
 import AddScreen from "../screens/AddScreen";
 import AddExpense from "../screens/AddExpense";
 import AddIncome from "../screens/AddIncome";
+import MyCardsScreen from "../screens/MyCardsScreen";
 
 export default function Navigation() {
   return (
@@ -121,7 +127,7 @@ function BottomTabNavigator() {
             <MaterialIcons
               name="home-filled"
               color={color}
-              size={22}
+              size={25}
               style={{ marginBottom: -3 }}
             />
           ),
@@ -155,7 +161,7 @@ function BottomTabNavigator() {
             <MaterialIcons
               name="insert-chart"
               color={color}
-              size={22}
+              size={25}
               style={{ marginBottom: -3 }}
             />
           ),
@@ -178,6 +184,46 @@ function BottomTabNavigator() {
             />
           ),
         }}
+      />
+      <BottomTab.Screen
+        name="MyCards"
+        component={MyCardsScreen}
+        options={({ navigation }: RootTabScreenProps<"MyCards">) => ({
+          tabBarLabel: () => null,
+          headerTitleAlign: "center",
+          headerShown: true,
+          headerShadowVisible: false,
+          title: "My Cards",
+          tabBarIcon: ({ color }) => (
+            <Ionicons
+              name="ios-wallet"
+              color={color}
+              size={25}
+              style={{ marginBottom: -3 }}
+            />
+          ),
+          headerRight: () => (
+            <Pressable
+              onPress={() => navigation.navigate("Modal")}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+                backgroundColor: "rgba(229,231, 235,0.3)",
+                padding: 5,
+                borderRadius: 10,
+              })}
+            >
+              <AntDesign
+                name="plus"
+                size={22}
+                // color={Colors[colorScheme].text}
+                style={{}}
+              />
+            </Pressable>
+          ),
+          headerRightContainerStyle: {
+            marginRight: 15,
+          },
+        })}
       />
     </BottomTab.Navigator>
   );

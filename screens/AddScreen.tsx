@@ -1,10 +1,12 @@
 import { SafeAreaView, ScrollView, View, Text, Pressable } from "react-native";
-
+import React, { useContext } from "react";
 import { AddTabScreenProps, RootTabScreenProps } from "../types";
-import Transactions, { transactions } from "../components/Transactions";
+import Transactions from "../components/Transactions";
 import { MaterialIcons } from "@expo/vector-icons";
+import AppContext from "../context/AppContext";
 
 export default function AddScreen({ navigation }: AddTabScreenProps<"Add">) {
+  const {transactions} = useContext(AppContext);
   return (
     <SafeAreaView>
       <ScrollView
