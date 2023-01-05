@@ -50,7 +50,6 @@ const AddTransactionForm = ({ type }: { type: "Expense" | "Income" }) => {
     setShowDatePicker(false);
     setDate(currentDate);
   };
-  console.log(date, title, amount, category);
 
   const submitHandler = async () => {
     const transaction = {
@@ -62,7 +61,6 @@ const AddTransactionForm = ({ type }: { type: "Expense" | "Income" }) => {
       cardId: card.id,
       type: type.toLowerCase(),
     } as Transaction;
-    console.log(transaction);
     await addTransaction(transaction);
     navigation.goBack();
   };

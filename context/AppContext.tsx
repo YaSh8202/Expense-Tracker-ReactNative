@@ -59,7 +59,7 @@ const AppContext = createContext({
 });
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
-  const [cards, setCards] = useState<Card[]>([]);
+  const [cards, setCards] = useState<Card[]>([cashCard]);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [balance, setBalance] = useState(0);
   const [incomeCategories, setIncomeCategories] =
@@ -68,7 +68,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     useState<Category[]>(expenseCat);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(cards);
   useEffect(() => {
     setIsLoading(true);
     // AsyncStorage.clear();
