@@ -59,7 +59,7 @@ const AppContext = createContext({
 });
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
-  const [cards, setCards] = useState<Card[]>([]);
+  const [cards, setCards] = useState<Card[]>([cashCard]);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [balance, setBalance] = useState(0);
   const [incomeCategories, setIncomeCategories] =

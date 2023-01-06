@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "day-to-day-expenses",
-    "slug": "expense-tracker",
+    "name": "Money Tracker",
+    "slug": "money-tracker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
