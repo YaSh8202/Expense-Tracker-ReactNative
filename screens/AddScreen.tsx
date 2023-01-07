@@ -23,7 +23,7 @@ export default function AddScreen({ navigation }: AddTabScreenProps<"Add">) {
             onPress={() => {
               navigation.navigate("AddIncome");
             }}
-            className=" bg-income/10 px-5 py-4 rounded-2xl space-y-1 flex-1 items-center "
+            className=" bg-income/10  py-4 rounded-2xl space-y-1 flex-1 items-center "
           >
             <MaterialIcons
               size={24}
@@ -40,7 +40,7 @@ export default function AddScreen({ navigation }: AddTabScreenProps<"Add">) {
             onPress={() => {
               navigation.navigate("AddExpense");
             }}
-            className=" bg-expense/10 px-5 py-4 rounded-2xl space-y-1 flex-1 items-center "
+            className=" bg-expense/10 py-4 rounded-2xl space-y-1 flex-1 items-center "
           >
             <MaterialIcons
               size={24}

@@ -51,7 +51,7 @@ const TotalIAE = () => {
 
   return (
     <View className="items-center space-x-3 w-[90%] flex-row">
-      <View className=" bg-income/10 px-5 py-4 rounded-2xl space-y-1 flex-1 items-center ">
+      <View className=" bg-income/10  py-4 rounded-2xl space-y-1 flex-1 items-center ">
         <Text className="text-gray-400 text-lg font-medium ">Total Income</Text>
         <View className="flex-row items-center space-x-2 self-center ">
           <View className="p-1 bg-income rounded-full ">
@@ -62,8 +62,8 @@ const TotalIAE = () => {
           </Text>
         </View>
       </View>
-      <View className=" bg-expense/10 px-6 py-4 rounded-2xl space-y-1 flex-1  ">
-        <Text className="text-gray-400 text-lg font-medium ">
+      <View className=" bg-expense/10 py-4 rounded-2xl space-y-1 flex-1  ">
+        <Text className="text-gray-400 text-lg font-medium text-center ">
           Total Expenses
         </Text>
         <View className="flex-row items-center space-x-2 self-center ">
@@ -101,16 +101,52 @@ const chartConfig = {
     stroke: "#d1d5db",
   },
 };
+function daysInMonth(month: number, year: number) {
+  return new Date(year, month, 0).getDate();
+}
 
 const StatsChart = () => {
   const screenWidth = Dimensions.get("window").width;
+  const { transactions } = useContext(AppContext);
+  const currentMonth = new Date().getMonth();
+  const currentYear = new Date().getFullYear();
+  console.log(currentMonth, currentYear);
+  const data = useMemo(() => {
+    const weekExpenses = [];
+    for (let i = 0; i < 4; i++) {
+      weekExpenses.push(
+        transactions
+          .filter(
+            (transaction) =>
+              transaction.type === "expense" &&
+              new Date(transaction.date).getMonth() === currentMonth &&
+              new Date(transaction.date).getFullYear() === currentYear &&
+              new Date(transaction.date).getDate() >= i * 7 &&
+              new Date(transaction.date).getDate() < (i + 1) * 7
+          )
+          .reduce((acc, curr) => acc + curr.amount, 0)
+      );
+    }
+    return weekExpenses;
+  }, [transactions]);
+  const monthName = new Date()
+    .toLocaleString("default", { month: "long" })
+    .slice(4, 7);
   return (
     <View className="my-5 w-[90%] ">
       <Text className="text-xl text-gray-800 py-1 font-semibold ">
         Statistics
       </Text>
       <View className="flex-row items-center justify-between w-full">
-        <Text className="text-gray-500">Apr01 - Apr30</Text>
+        <Text className="text-gray-500">
+          {`${
+            monthName +
+            " 01 - " +
+            monthName +
+            " " +
+            daysInMonth(currentMonth + 1, currentYear)
+          }`}
+        </Text>
       </View>
       <BarChart
         showBarTops={false}
@@ -120,7 +156,7 @@ const StatsChart = () => {
           labels: ["Week1", "Week2", "Week3", "Week4"],
           datasets: [
             {
-              data: [30, 45, 28, 80],
+              data: data,
             },
           ],
         }}

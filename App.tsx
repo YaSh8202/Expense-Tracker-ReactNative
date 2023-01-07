@@ -15,7 +15,7 @@ export default function App() {
       <SafeAreaProvider>
         <AppProvider>
           <Navigation />
-          <StatusBar />
+          <StatusBar style="dark" backgroundColor="white" />
         </AppProvider>
       </SafeAreaProvider>
     );
