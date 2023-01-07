@@ -1,23 +1,31 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import AppContext from "../context/AppContext";
 
 const AcccountCard = ({
   name,
   expense,
   income,
+  id,
 }: {
   expense: number;
   income: number;
   name?: string;
+  id?: string;
 }) => {
+  const { cards } = useContext(AppContext);
+  const intitialBalance = id
+    ? cards.find((card) => card.id === id)?.balance || 0
+    : 0;
+
   return (
     <LinearGradient
       start={{ x: 0, y: 1 }}
       end={{ x: 1, y: 0 }}
       colors={["#4e7ee7", "#b767c4", "#fa805f"]}
-      className="flex flex-col py-6 px-7 text-white  space-y-5 rounded-3xl w-[90%] h-[210px] justify-between shadow-md "
+      className="flex flex-col py-6 px-7 mb-5 text-white  space-y-5 rounded-3xl w-[90%] h-[210px] justify-between shadow-md "
     >
       <View className="flex flex-row items-start text-white justify-between  ">
         <View className="flex flex-col items-start space-y-2 ">
@@ -28,7 +36,7 @@ const AcccountCard = ({
             <Entypo name="chevron-small-down" size={20} color="white" />
           </View>
           <Text className="text-white text-2xl font-bold">
-            ₹{income - expense}
+            ₹{intitialBalance + income - expense}
           </Text>
         </View>
         <Entypo name="dots-three-horizontal" size={20} color="white" />

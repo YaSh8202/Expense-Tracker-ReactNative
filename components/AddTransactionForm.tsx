@@ -170,7 +170,7 @@ const AddTransactionForm = ({ type }: { type: "Expense" | "Income" }) => {
 
 export default AddTransactionForm;
 
-const CustomInput = ({ props, title }: { props: any; title: string }) => {
+export const CustomInput = ({ props, title }: { props: any; title: string }) => {
   return (
     <View className="w-full space-y-2 mb-5 ">
       <Text className="text-gray-800 text-lg font-semibold ">{title}</Text>

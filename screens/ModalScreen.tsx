@@ -1,34 +1,70 @@
-import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import {  Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { CustomInput } from "../components/AddTransactionForm";
+import { useNavigation } from "@react-navigation/native";
+import AppContext from "../context/AppContext";
+import { Card } from "../typings";
 
-import EditScreenInfo from "../components/EditScreenInfo";
-
-export default function ModalScreen() {
+export default function AddCardModal() {
+  const navigation = useNavigation();
+  const [title, setTitle] = React.useState("");
+  const [balance, setBalance] = React.useState("0");
+  const {addCard} = React.useContext(AppContext);
+  const submitHandler = async () => {
+    const newCard = {
+      id: Math.random().toString(),
+      name: title,
+      balance: parseFloat(balance),
+    } as Card;
+    await addCard(newCard);
+    navigation.goBack();
+  };
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Modal</Text>
-      <View style={styles.separator} />
-      <EditScreenInfo path="/screens/ModalScreen.tsx" />
+    <View
+      style={{
+        alignItems: "center",
+        // flex: 1,
+        backgroundColor: "white",
+        paddingTop: 20,
+        minHeight: "100%",
+        width: "100%",
+      }}
+    >
+      <View className="w-[87%] flex-col justify-between  ">
+      <ScrollView
+        contentContainerStyle={{
+          paddingBottom: 20,
+        }}
+        showsVerticalScrollIndicator={false}
+      >
+        <CustomInput
+          title={"Card Name"}
+          props={{
+            // placeholder: "eg. Dinner with friends",
+            value: title,
+            onChangeText: (text: string) => setTitle(text),
+          }}
+        />
+        <CustomInput
+          title="Initial Balance"
+          props={{
+            keyboardType: "decimal-pad",
+            value: balance,
+            onChangeText: (text: string) => setBalance(text),
+          }}
+        />
+        
 
-      {/* Use a light status bar on iOS to account for the black space above the modal */}
-      <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
+        <Pressable
+          onPress={submitHandler}
+          className={`  rounded-xl bg-income w-full py-3   `}
+        >
+          <Text className="text-xl text-white text-center ">Add Card</Text>
+        </Pressable>
+      </ScrollView>
+
+      
+    </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});

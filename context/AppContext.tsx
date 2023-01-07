@@ -56,6 +56,7 @@ const AppContext = createContext({
   setTransactions: (transactions: Transaction[]) => {},
   setBalance: (balance: number) => {},
   addTransaction: (transaction: Transaction) => {},
+  addCard: (card: Card) => {},
 });
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
@@ -111,6 +112,11 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     );
   };
 
+  const addCard = async (card: Card) => {
+    setCards((prev) => [...prev, card]);
+    await AsyncStorage.setItem("cards", JSON.stringify([...cards, card]));
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -125,6 +131,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         expenseCategories,
         setExpenseCategories,
         addTransaction,
+        addCard,
       }}
     >
       {isLoading ? null : children}

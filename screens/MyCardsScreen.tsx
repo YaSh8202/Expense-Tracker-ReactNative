@@ -14,11 +14,13 @@ const MyCardsScreen = () => {
           backgroundColor: "white",
           paddingTop: 20,
           minHeight: "100%",
+
         }}
       >
         {cards.map((card) => {
           return (
             <AcccountCard
+              id={card.id}
               name={card.name}
               key={card.id}
               expense={transactions

@@ -59,7 +59,9 @@ function RootNavigator() {
         options={{ title: "Oops!" }}
       />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen options={{
+          title: "Add Card",
+        }} name="AddCardModal" component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -133,21 +135,6 @@ function BottomTabNavigator() {
           ),
           headerTitleAlign: "center",
           headerShadowVisible: false,
-          // headerRight: () => (
-          //   <Pressable
-          //     onPress={() => navigation.navigate("Modal")}
-          //     style={({ pressed }) => ({
-          //       opacity: pressed ? 0.5 : 1,
-          //     })}
-          //   >
-          //     <FontAwesome
-          //       name="info-circle"
-          //       size={25}
-          //       // color={Colors[colorScheme].text}
-          //       style={{ marginRight: 15 }}
-          //     />
-          //   </Pressable>
-          // ),
         })}
       />
       <BottomTab.Screen
@@ -204,7 +191,7 @@ function BottomTabNavigator() {
           ),
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate("Modal")}
+              onPress={() => navigation.navigate("AddCardModal")}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
                 backgroundColor: "rgba(229,231, 235,0.3)",
