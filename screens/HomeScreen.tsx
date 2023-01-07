@@ -6,7 +6,12 @@ import { useContext, useMemo } from "react";
 import AppContext from "../context/AppContext";
 
 export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
-  const { transactions } = useContext(AppContext);
+  const { transactions, cards } = useContext(AppContext);
+
+  const totalInitialBalance = useMemo(() => {
+    return cards.reduce((acc, curr) => acc + curr.balance, 0);
+  }, [cards]);
+
   const totalIncome = useMemo(() => {
     return transactions
       .filter((transaction) => transaction.type === "income")
@@ -29,7 +34,11 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
           minHeight: "100%",
         }}
       >
-        <AcccountCard expense={totalExpense} income={totalIncome} />
+        <AcccountCard
+          intitialBalance={totalInitialBalance}
+          expense={totalExpense}
+          income={totalIncome}
+        />
         <View className="flex-col mt-6 w-[90%] ">
           <View className="flex-row items-center justify-between my-2 ">
             <Text className="text-gray-800 text-xl font-semibold ">

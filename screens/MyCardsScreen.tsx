@@ -20,7 +20,7 @@ const MyCardsScreen = () => {
         {cards.map((card) => {
           return (
             <AcccountCard
-              id={card.id}
+              intitialBalance={card.balance}
               name={card.name}
               key={card.id}
               expense={transactions

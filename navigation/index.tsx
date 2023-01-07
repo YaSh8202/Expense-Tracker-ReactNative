@@ -10,10 +10,11 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import * as React from "react";
+import React, { useEffect } from "react";
 import { Pressable } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
@@ -59,9 +60,13 @@ function RootNavigator() {
         options={{ title: "Oops!" }}
       />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen options={{
-          title: "Add Card",
-        }} name="AddCardModal" component={ModalScreen} />
+        <Stack.Screen
+          options={{
+            title: "Add Card",
+          }}
+          name="AddCardModal"
+          component={ModalScreen}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -113,6 +118,18 @@ function AddTransNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
+  const navigation = useNavigation();
+  useEffect(() => {
+    AsyncStorage.getItem("cashBalanceAdded").then((value) => {
+      if (value === null) {
+        AsyncStorage.setItem("cashBalanceAdded", "true");
+        navigation.navigate("AddCardModal", {
+          cardId: "1",
+        });
+      }
+    });
+  }, []);
+
   return (
     <BottomTab.Navigator
       initialRouteName="Home"

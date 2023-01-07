@@ -113,6 +113,18 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const addCard = async (card: Card) => {
+    const cardExistIndex = cards.findIndex((c) => c.id === card.id);
+    if (cardExistIndex !== -1) {
+      setCards((prev) => {
+        prev[cardExistIndex] = card;
+        return prev;
+      });
+      await AsyncStorage.setItem("cards", JSON.stringify(
+        cards.map((c) => (c.id === card.id ? card : c))
+      ));
+      return;
+    }
+
     setCards((prev) => [...prev, card]);
     await AsyncStorage.setItem("cards", JSON.stringify([...cards, card]));
   };

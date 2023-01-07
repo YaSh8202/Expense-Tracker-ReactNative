@@ -8,17 +8,17 @@ const AcccountCard = ({
   name,
   expense,
   income,
-  id,
+  intitialBalance,
 }: {
   expense: number;
   income: number;
   name?: string;
-  id?: string;
+  intitialBalance: number;
 }) => {
-  const { cards } = useContext(AppContext);
-  const intitialBalance = id
-    ? cards.find((card) => card.id === id)?.balance || 0
-    : 0;
+  // const { cards } = useContext(AppContext);
+  // const intitialBalance = id
+  //   ? cards.find((card) => card.id === id)?.balance || 0
+  //   : 0;
 
   return (
     <LinearGradient

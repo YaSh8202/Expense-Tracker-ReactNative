@@ -162,7 +162,7 @@ const StatsChart = () => {
         }}
         width={screenWidth * 0.9}
         height={220}
-        yAxisLabel="$"
+        yAxisLabel="₹"
         chartConfig={chartConfig}
         yAxisSuffix=""
         // verticalLabelRotation={30}
