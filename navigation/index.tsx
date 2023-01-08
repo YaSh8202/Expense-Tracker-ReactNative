@@ -63,6 +63,8 @@ function RootNavigator() {
         <Stack.Screen
           options={{
             title: "Add Card",
+            headerTitleAlign: "center",
+          headerShadowVisible: false,
           }}
           name="AddCardModal"
           component={ModalScreen}

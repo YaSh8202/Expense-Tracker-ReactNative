@@ -110,7 +110,6 @@ const StatsChart = () => {
   const { transactions } = useContext(AppContext);
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
-  console.log(currentMonth, currentYear);
   const data = useMemo(() => {
     const weekExpenses = [];
     for (let i = 0; i < 4; i++) {

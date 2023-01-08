@@ -29,7 +29,13 @@ const TransactionComponent = ({
             /> */}
         {imageSource && (
           <Image
-            style={{ width: 30, height: 30, resizeMode: "cover" }}
+            style={{
+              width: 35,
+              height: 35,
+              resizeMode: "cover",
+              borderRadius: 4,
+              
+            }}
             source={imageSource.image}
           />
         )}
@@ -46,6 +52,7 @@ const TransactionComponent = ({
         } font-medium `}
       >
         {transaction.type === "expense" ? "-" : "+"}
+        &#8377;
         {transaction.amount}
       </Text>
     </View>

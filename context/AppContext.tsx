@@ -23,6 +23,21 @@ const expenseCat = [
     name: "Groceries",
     image: require("../assets/images/categories/groceries.jpg"),
   },
+  {
+    id: "5",
+    name: "Rent",
+    image: require("../assets/images/categories/rent.png"),
+  },
+  {
+    id: "6",
+    name: "Entertainment",
+    image: require("../assets/images/categories/entertainment.png"),
+  },
+  {
+    id: "7",
+    name: "Clothing",
+    image: require("../assets/images/categories/clothing.png"),
+  },
 ] as Category[];
 
 const incomeCat = [
@@ -35,6 +50,11 @@ const incomeCat = [
     id: "2",
     name: "Investment",
     image: require("../assets/images/categories/investment.jpg"),
+  },
+  {
+    id: "3",
+    name: "Rent Income",
+    image: require("../assets/images/categories/rent.png"),
   },
 ] as Category[];
 
