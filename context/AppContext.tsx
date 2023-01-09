@@ -90,7 +90,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
     // AsyncStorage.clear();
     AsyncStorage.getItem("cards").then((value) => {
       if (value === null) {
@@ -136,12 +136,12 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const cardExistIndex = cards.findIndex((c) => c.id === card.id);
     if (cardExistIndex !== -1) {
       setCards((prev) => {
-        prev[cardExistIndex] = card;
-        return prev;
+        return prev.map((c) => (c.id === card.id ? card : c));
       });
-      await AsyncStorage.setItem("cards", JSON.stringify(
-        cards.map((c) => (c.id === card.id ? card : c))
-      ));
+      await AsyncStorage.setItem(
+        "cards",
+        JSON.stringify(cards.map((c) => (c.id === card.id ? card : c)))
+      );
       return;
     }
 

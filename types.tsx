@@ -22,6 +22,7 @@ export type RootStackParamList = {
     cardId: string;
   }| undefined;
   NotFound: undefined;
+  StartScreen: undefined;
 };
 
 export type AddStackParamList = {

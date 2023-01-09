@@ -31,6 +31,7 @@ import AddScreen from "../screens/AddScreen";
 import AddExpense from "../screens/AddExpense";
 import AddIncome from "../screens/AddIncome";
 import MyCardsScreen from "../screens/MyCardsScreen";
+import StartScreen from "../screens/StartScreen";
 
 export default function Navigation() {
   return (
@@ -58,6 +59,13 @@ function RootNavigator() {
         name="NotFound"
         component={NotFoundScreen}
         options={{ title: "Oops!" }}
+      />
+      <Stack.Screen
+        name="StartScreen"
+        component={StartScreen}
+        options={{
+          headerShown: false,
+        }}
       />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen
@@ -125,9 +133,10 @@ function BottomTabNavigator() {
     AsyncStorage.getItem("cashBalanceAdded").then((value) => {
       if (value === null) {
         AsyncStorage.setItem("cashBalanceAdded", "true");
-        navigation.navigate("AddCardModal", {
-          cardId: "1",
-        });
+        navigation.navigate("StartScreen");
+        // navigation.navigate("AddCardModal", {
+        //   cardId: "1",
+        // });
       }
     });
   }, []);

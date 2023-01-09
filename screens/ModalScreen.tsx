@@ -20,7 +20,7 @@ export default function AddCardModal({ route }: any) {
       balance: parseFloat(balance),
     } as Card;
     await addCard(newCard);
-    navigation.goBack();
+    navigation.navigate("Root");
   };
   return (
     <View

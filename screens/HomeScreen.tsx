@@ -5,9 +5,11 @@ import Transactions from "../components/Transactions";
 import { useContext, useMemo } from "react";
 import AppContext from "../context/AppContext";
 
-export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
+export default function HomeScreen({
+  navigation,
+  route,
+}: RootTabScreenProps<"Home">) {
   const { transactions, cards } = useContext(AppContext);
-
   const totalInitialBalance = useMemo(() => {
     return cards.reduce((acc, curr) => acc + curr.balance, 0);
   }, [cards]);
