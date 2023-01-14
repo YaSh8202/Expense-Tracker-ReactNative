@@ -21,7 +21,7 @@ const expenseCat = [
   {
     id: "4",
     name: "Groceries",
-    image: require("../assets/images/categories/groceries.jpg"),
+    image: require("../assets/images/categories/groceries.png"),
   },
   {
     id: "5",
@@ -49,7 +49,7 @@ const incomeCat = [
   {
     id: "2",
     name: "Investment",
-    image: require("../assets/images/categories/investment.jpg"),
+    image: require("../assets/images/categories/investment.png"),
   },
   {
     id: "3",
