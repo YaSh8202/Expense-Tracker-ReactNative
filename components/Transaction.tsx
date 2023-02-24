@@ -18,15 +18,6 @@ const TransactionComponent = ({
     <View key={transaction.id} className="flex-row items-center my-3  ">
       {/* Image */}
       <View className="items-center justify-center bg-gray-200/30 p-2 rounded-xl ">
-        {/* <MaterialIcons
-              name="attach-money"
-              color={
-                transaction.type === "expense"
-                  ? "rgb(239, 68, 68)"
-                  : "rgb(34, 197, 94)"
-              }
-              size={26}
-            /> */}
         {imageSource && (
           <Image
             style={{
@@ -34,9 +25,8 @@ const TransactionComponent = ({
               height: 35,
               resizeMode: "cover",
               borderRadius: 4,
-              
             }}
-            source={imageSource.image}
+            source={imageSource.image ?? { uri: imageSource.src }}
           />
         )}
       </View>

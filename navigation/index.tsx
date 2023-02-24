@@ -16,7 +16,7 @@ import React, { useEffect } from "react";
 import { Pressable } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import ModalScreen from "../screens/ModalScreen";
+import AddCardModal from "../screens/AddCardModal";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import {
   AddStackParamList,
@@ -32,6 +32,7 @@ import AddExpense from "../screens/AddExpense";
 import AddIncome from "../screens/AddIncome";
 import MyCardsScreen from "../screens/MyCardsScreen";
 import StartScreen from "../screens/StartScreen";
+import AddCategoryModal from "../screens/AddCategoryModal";
 
 export default function Navigation() {
   return (
@@ -75,7 +76,16 @@ function RootNavigator() {
           headerShadowVisible: false,
           }}
           name="AddCardModal"
-          component={ModalScreen}
+          component={AddCardModal}
+        />
+        <Stack.Screen
+          options={{
+            title: "Add Category",
+            headerTitleAlign: "center",
+          headerShadowVisible: false,
+          }}
+          name="AddCategoryModal"
+          component={AddCategoryModal}
         />
       </Stack.Group>
     </Stack.Navigator>

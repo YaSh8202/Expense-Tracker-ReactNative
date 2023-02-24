@@ -1,7 +1,8 @@
 export type Category = {
   id: string;
   name: string;
-  image: number;
+  image?: number;
+  src?: string;
 };
 
 export type Transaction = {

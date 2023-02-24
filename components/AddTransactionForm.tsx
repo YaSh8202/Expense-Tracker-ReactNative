@@ -14,6 +14,7 @@ import RNDateTimePicker, {
 import AppContext from "../context/AppContext";
 import { Transaction } from "../typings";
 import { useNavigation } from "@react-navigation/native";
+import { Entypo } from "@expo/vector-icons";
 
 const categories = ["Food", "Transport", "Shopping", "Entertainment", "Health"];
 // const cards = [
@@ -125,10 +126,20 @@ const AddTransactionForm = ({ type }: { type: "Expense" | "Income" }) => {
                 </Pressable>
               )
             )}
+            <Pressable
+              onPress={() => {
+                navigation.navigate("AddCategoryModal", {
+                  type,
+                });
+              }}
+              className={`bg-${type.toLowerCase()}/10 py-1 px-2 rounded-md transition-all duration-200 ease-in-out justify-center items-center  `}
+            >
+              <Entypo color={"rgb(75, 85, 99)"} size={20} name="plus" />
+            </Pressable>
           </View>
         </View>
         <View className="w-full space-y-2 mb-5 ">
-          <Text className="text-gray-800 text-lg font-semibold ">Account</Text>
+          <Text className="text-gray-800 text-lg font-semibold ">Card</Text>
           <View className=" flex-wrap flex-row gap-2 ">
             {cards.map((cat, i) => (
               <Pressable
@@ -150,6 +161,14 @@ const AddTransactionForm = ({ type }: { type: "Expense" | "Income" }) => {
                 </Text>
               </Pressable>
             ))}
+            <Pressable
+              onPress={() => {
+                navigation.navigate("AddCardModal");
+              }}
+              className={`bg-${type.toLowerCase()}/10 py-1 px-2 rounded-md transition-all duration-200 ease-in-out justify-center items-center  `}
+            >
+              <Entypo color={"rgb(75, 85, 99)"} size={20} name="plus" />
+            </Pressable>
           </View>
         </View>
 
@@ -170,7 +189,13 @@ const AddTransactionForm = ({ type }: { type: "Expense" | "Income" }) => {
 
 export default AddTransactionForm;
 
-export const CustomInput = ({ props, title }: { props: any; title: string }) => {
+export const CustomInput = ({
+  props,
+  title,
+}: {
+  props: any;
+  title: string;
+}) => {
   return (
     <View className="w-full space-y-2 mb-5 ">
       <Text className="text-gray-800 text-lg font-semibold ">{title}</Text>

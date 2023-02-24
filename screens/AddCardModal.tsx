@@ -7,12 +7,14 @@ import { Card } from "../typings";
 
 export default function AddCardModal({ route }: any) {
   const navigation = useNavigation();
-  const  cardId  = route?.params?.cardId;
+  const cardId = route?.params?.cardId;
   const { addCard, cards } = React.useContext(AppContext);
   const oldCard = cards.find((card) => card.id === cardId);
 
   const [title, setTitle] = React.useState(oldCard?.name || "");
-  const [balance, setBalance] = React.useState(oldCard?.balance?.toString() || "");
+  const [balance, setBalance] = React.useState(
+    oldCard?.balance?.toString() || ""
+  );
   const submitHandler = async () => {
     const newCard = {
       id: oldCard?.id || (cards.length + 1).toString(),
@@ -29,16 +31,19 @@ export default function AddCardModal({ route }: any) {
         // flex: 1,
         backgroundColor: "white",
         paddingTop: 20,
-        minHeight: "100%",
+        paddingBottom: 20,
         width: "100%",
+        flex: 1,
+        
       }}
     >
-      <View className="w-[87%] flex-col justify-between  ">
-        <ScrollView
-          contentContainerStyle={{
+      <View className="w-[87%] flex-1 flex-col justify-between  ">
+        <View
+          style={{
             paddingBottom: 20,
+            flex: 1,
           }}
-          showsVerticalScrollIndicator={false}
+          // showsVerticalScrollIndicator={false}
         >
           <CustomInput
             title={"Card Name"}
@@ -56,14 +61,13 @@ export default function AddCardModal({ route }: any) {
               onChangeText: (text: string) => setBalance(text),
             }}
           />
-
-          <Pressable
-            onPress={submitHandler}
-            className={`  rounded-xl bg-income w-full py-3   `}
-          >
-            <Text className="text-xl text-white text-center ">Add Card</Text>
-          </Pressable>
-        </ScrollView>
+        </View>
+        <Pressable
+          onPress={submitHandler}
+          className={`  rounded-xl bg-income w-full py-3   `}
+        >
+          <Text className="text-xl text-white text-center ">Add Card</Text>
+        </Pressable>
       </View>
     </View>
   );

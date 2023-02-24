@@ -47,9 +47,13 @@ export const transactions = [
 const Transactions = ({ transactions }: { transactions: Transaction[] }) => {
   return (
     <>
-      {transactions.map((item, i) => (
-        <TransactionComponent key={item.id} transaction={item} />
-      ))}
+      {transactions
+        .sort((a, b) => {
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        })
+        .map((item, i) => (
+          <TransactionComponent key={item.id} transaction={item} />
+        ))}
     </>
   );
 };

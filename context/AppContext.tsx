@@ -77,6 +77,7 @@ const AppContext = createContext({
   setBalance: (balance: number) => {},
   addTransaction: (transaction: Transaction) => {},
   addCard: (card: Card) => {},
+  addCategory: async (category: Category, type: "Income" | "Expense") => {},
 });
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
@@ -149,6 +150,25 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     await AsyncStorage.setItem("cards", JSON.stringify([...cards, card]));
   };
 
+  const addCategory = async (
+    category: Category,
+    type: "Income" | "Expense"
+  ) => {
+    if (type === "Income") {
+      setIncomeCategories((prev) => [...prev, category]);
+      await AsyncStorage.setItem(
+        "incomeCategories",
+        JSON.stringify([...incomeCategories, category])
+      );
+    } else {
+      setExpenseCategories((prev) => [...prev, category]);
+      await AsyncStorage.setItem(
+        "expenseCategories",
+        JSON.stringify([...expenseCategories, category])
+      );
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -164,6 +184,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         setExpenseCategories,
         addTransaction,
         addCard,
+        addCategory,
       }}
     >
       {isLoading ? null : children}

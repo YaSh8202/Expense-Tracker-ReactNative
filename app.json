@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "Money Tracker",
+    "description":"A simple app to track your money",
     "slug": "money-tracker",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -25,14 +26,15 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.yash.moneytracker"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "118892a8-d774-49d4-8d2e-177d29217707"
+        "projectId": "dd9335fd-5df9-4dfe-aa38-f5c1818f6236"
       }
     },
     "owner": "yash01"
