@@ -49,8 +49,8 @@ Once you're up and running with Create React Native App, visit [this tutorial](h
 ## Deployed on Expo.dev
 https://expo.dev/@yash01/money-tracker?serviceType=classic&distribution=expo-go
 
-![image](https://user-images.githubusercontent.com/91831606/211141895-a2ee69bb-3c31-4e61-a521-02596a7c4f4e.png)
-
+## Download Apk
+https://expo.dev/artifacts/eas/uGhZrq3edPD76y35dPzGo7.apk
 
 ## Usage
 
